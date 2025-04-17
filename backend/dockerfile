@@ -1,0 +1,22 @@
+# Use an official Node.js image
+FROM node:18-alpine
+
+# Set working directory
+WORKDIR /app
+
+# Install app dependencies
+COPY package*.json ./
+RUN yarn install
+
+# Copy the source code
+COPY . .
+
+# Environment variables (set them using docker-compose or env files)
+ENV PORT=4000
+ENV NODE_ENV=production
+
+# Expose backend port
+EXPOSE 4000
+
+# Start the server
+CMD ["node", "index.js"]
